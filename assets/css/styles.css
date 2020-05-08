@@ -40,6 +40,9 @@
 .goldShadow{
   box-shadow: 	10px 10px 105px 0px rgba(241, 176, 0, 0.6);
 }
+.cYellow{
+      color: #f5b504 !important;
+}
 
 /*mas  estilos*/
 .wrapper {
