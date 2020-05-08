@@ -37,11 +37,32 @@
     background-size: 100% auto;
 
 }
+
+#map {
+        height: 400px;  
+        width: 100%;  
+       }
+       .topM{
+            margin-top: 20px;
+       }
 .goldShadow{
   box-shadow: 	10px 10px 105px 0px rgba(241, 176, 0, 0.6);
 }
 .cYellow{
       color: #f5b504 !important;
+}
+.divMap{
+  margin-left: 35px;
+    margin-top: 19px;
+    border: 5px solid #e9b831!important;
+}
+
+
+.bgGray{
+      background: #e8e8e859;
+}
+.btnRight{
+  margin-left: 110px;
 }
 
 /*mas  estilos*/
