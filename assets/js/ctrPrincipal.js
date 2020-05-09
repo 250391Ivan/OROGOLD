@@ -246,10 +246,59 @@
 })(window.jQuery);
 
   function initMap() {
-  var uluru = {lat: 19.425723, lng: -99.162320};
-  var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 17, center: uluru});
-  var marker = new google.maps.Marker({position: uluru, map: map});
+    var uluru = {lat:  19.425723, lng: -99.162320};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: uluru
+  });
+
+  var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">OROGOLD</h1>'+
+      '<div id="bodyContent">'+
+      '<p>Los  mejores  masajes del  mundo, encuentranos en esta  ubicacion.</b>'+ 
+      '</div>'+
+      '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map,
+    title: 'OROGOLD'
+  });
+ google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
+  infowindow.open(map, marker);
+});
+
+
+
 }
 initMap();
+
+
+$(document).ready(function(){
+ 
+  $('.ir-arriba').click(function(){
+    console.log('entrando');
+    $('body, html').animate({
+      scrollTop: '0px'
+    }, 300);
+  });
+ 
+  $(window).scroll(function(){
+    if( $(this).scrollTop() > 0 ){
+      $('.ir-arriba').slideDown(300);
+    } else {
+      $('.ir-arriba').slideUp(300);
+    }
+  });
+ 
+});
+
+
+
 

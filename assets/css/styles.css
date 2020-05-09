@@ -80,7 +80,12 @@
     height: 100%;
 
 }
-
+.correo{
+      margin-left: 240px;
+    font-size: 14px;
+    margin-top: 15px;
+    color: #a0822e;
+}
 /*mas  estilos*/
 .wrapper {
   display: flex;
@@ -91,6 +96,41 @@
   min-height: 100%;
   padding: 20px;
 }
+
+#masajeoro:hover {
+ opacity:0.2;
+}
+#exfoliacion:hover
+{
+-webkit-transform: scale(1.2);
+-ms-transform: scale(1.2);
+transform: scale(1.2);
+}
+#recFacial:hover{
+box-shadow:
+1px 1px #53a7ea,
+2px 2px #53a7ea,
+3px 3px #53a7ea;
+-webkit-transform: translateX(-3px);
+transform: translateX(-3px);
+}
+
+.ir-arriba {
+  display:none;
+  padding:20px;
+  background:#024959;
+  font-size:20px;
+  color:#fff;
+  cursor:pointer;
+  position: fixed;
+  bottom:20px;
+  right:20px;
+}
+
+
+
+
+
 
 #formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
