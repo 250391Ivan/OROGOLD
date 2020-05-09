@@ -19,7 +19,7 @@
 					phone:number,
 				});
 
- 		 	$http.post("https://localhost/BackendOroGold/Controller_User/SaveInfoForm", data, config)
+ 		 	$http.post("http://localhost/BackendOroGold/", data, config)
 					.then(function(response) {
 						console.log(response);
 						 var data = response.data;
