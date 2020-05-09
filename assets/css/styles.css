@@ -86,6 +86,20 @@
     margin-top: 15px;
     color: #a0822e;
 }
+.bgModalExit{
+    background:  #12b94d; 
+    color: aliceblue;
+}
+.bgModalError{
+    background:#a07e1e;
+    color: aliceblue;
+}
+.mgBottom{
+    margin-bottom: 18px;
+}
+
+ 
+    
 /*mas  estilos*/
 .wrapper {
   display: flex;

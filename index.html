@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="app" >
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,9 +12,9 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/owl-carousel.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/stylepage.css">
-			<link rel="stylesheet" type="text/css" href="assets/css/animated.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/animated.css">
 	</head>
-	<body>
+	<body ng-controller="ControllerFirst" >
 		<!-- Menu principal -->
 		<header class="header-area header-sticky">
 			<div class="container">
@@ -24,7 +24,7 @@
 							<a class="logo" > <img class="logoIcon" src="assets/img/cropped-orogold-logo-dgold.png"></a>
 							<ul class="nav">
 								<li class="scroll-to-section"><p class="goldColor emailmargin">OroGoldspa@orogold.com</p></li>
-								<li><button type="button" class="btn btn-outline-warning">Reserva Ahora</button></li>
+								<li><button type="button" class="btn btn-outline-warning">Reserva Ahora </button></li>
 							</ul>
 							<a class='menu-trigger'>
 								<span>Menu</span>
@@ -48,12 +48,14 @@
 						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
 							<div class="wrapper fadeInDown">
 								<div id="formContent">
-									<form>
+									<form id="addCommentForm" method="post" action="">
 										<h3 class="marginLogin">Reserva ahora tu cita</h3>
-										<input type="text" id="login" class="fadeIn second"   name="login" placeholder="Nombre">
-										<input type="text" id="password" class="fadeIn third" name="login" placeholder="Email">
-										<input type="text" id="password" class="fadeIn third" name="login" placeholder="Telefono">
-										<input type="submit" class="fadeIn fourth" value="Reservar Ahora">
+										<input type="text" id="name" class="fadeIn second"    name="name" placeholder="Nombre" ng-model="name">
+										<input type="text" id="password" class="fadeIn third" name="login" placeholder="Email" ng-model="mail">
+										<input type="text" id="password" class="fadeIn third" name="login" placeholder="Telefono" ng-model="phone">
+										<button type="button" class="btn btn-outline-warning mgBottom" ng-click="SendFormulario(name,mail,phone)"
+										ng-disabled="!name && !mail && !phone">Reserva Ahora </button>
+										
 									</form>
 								</div>
 							</div>
@@ -195,47 +197,77 @@
 							<h5 >	Sabias que un masaje debido a su accion calmante y analgesica viene dada mediante actos reflejos que afectan al sistema nervioso central o esto causa la liberacion de endorfinas que anulan la sensacion de dolor en el cerebro. El estimulo de los  mecanos receptores mediante el masaje se ha demostrado que alivia el dolor y la tension muscular.</h5>
 							<a href="#welcome">
 							<button type="button" class="btn btn-outline-warning marTop" id="volverArriba"><i class="fa fa-calendar"></i> Reserva Ahora</button></a>
-
-					</div>
-				</div>
-			</section>
-			<footer class="marTop">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-7 col-md-12 col-sm-12">
-							<a class="logo" > <img class="footerImg" src="assets/img/cropped-orogold-logo-dgold.png"></a>
-							<p class="correo"> <i class="fa fa-envelope"></i> OroGoldspa@orogold.com</p>
-							<a class="logo" > <img class="footerImg" src="assets/img/cropped-orogold-logo-dgold.png"></a>
-							<p class="correo"> <i class="fa fa-phone"></i> 525502630032</p>
-						</div>
-						<div class="col-lg-5 col-md-12 col-sm-12">
-							<ul class="social">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
 						</div>
 					</div>
+				</section>
+				<footer class="marTop">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-7 col-md-12 col-sm-12">
+								<a class="logo" > <img class="footerImg" src="assets/img/cropped-orogold-logo-dgold.png"></a>
+								<p class="correo"> <i class="fa fa-envelope"></i> OroGoldspa@orogold.com</p>
+								<a class="logo" > <img class="footerImg" src="assets/img/cropped-orogold-logo-dgold.png"></a>
+								<p class="correo"> <i class="fa fa-phone"></i> 525502630032</p>
+							</div>
+							<div class="col-lg-5 col-md-12 col-sm-12">
+								<ul class="social">
+									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</footer>
+				<!-- Modales  para validacion de  correo -->
+				<div class="modal" id="citaAgendada">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header bgModalExit">
+								<h4 class="modal-title">Informacion de Cita</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<div class="modal-body center">
+								Cita Agendad con Exito <i class="fa fa-check" aria-hidden="true"></i>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrrar</button>
+							</div>
+							
+						</div>
+					</div>
 				</div>
-			</footer>
-
-			<script>
-
+				<div class="modal" id="ErrorCita">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header bgModalError">
+								<h4 class="modal-title">Informacion de Cita</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<div class="modal-body center">
+								Ya  cuentas con una  cita, valida los datos en tu correo.<i class="fa fa-envelope-o" aria-hidden="true"></i>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrrar</button>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<!-- LIBRERIAS  ADICIONALES   JQUERY,Bootstrap Y  ARCHIVOS  PROPIOS-->
+				<script src="assets/js/jquery-2.1.0.min.js"></script>
+				<script src="assets/js/popper.js"></script>
+				<script src="assets/js/bootstrap.min.js"></script>
+				<script src="assets/js/owl-carousel.js"></script>
+				<script src="assets/js/scrollreveal.min.js"></script>
+				<script src="assets/js/waypoints.min.js"></script>
+				<script src="assets/js/jquery.counterup.min.js"></script>
+				<script src="assets/js/imgfix.min.js"></script>
+				<script src="assets/js/ctrPrincipal.js"></script>
+				<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+				<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+				<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+				<script src="assets/js/app.js"></script>
 				
-			</script>
-			<!-- LIBRERIAS  ADICIONALES   JQUERY,Bootstrap Y  ARCHIVOS  PROPIOS-->
-			<script src="assets/js/jquery-2.1.0.min.js"></script>
-			<script src="assets/js/popper.js"></script>
-			<script src="assets/js/bootstrap.min.js"></script>
-			<script src="assets/js/owl-carousel.js"></script>
-			<script src="assets/js/scrollreveal.min.js"></script>
-			<script src="assets/js/waypoints.min.js"></script>
-			<script src="assets/js/jquery.counterup.min.js"></script>
-			<script src="assets/js/imgfix.min.js"></script>
-			<script src="assets/js/ctrPrincipal.js"></script>
-			
-			<script async defer
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5-Nj7tyRSKlno1yD61hSShRmPKounVBo&callback=initMap">
-			</script>
-			
-		</html>
+				
+			</html>
